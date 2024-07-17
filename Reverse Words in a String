@@ -1,0 +1,29 @@
+class Solution {
+    public String reverseWords(String s) {
+        int i = s.length() - 1;  // Initialize 'i' to point to the last character of 's'
+        String ans = "";  // Initialize 'ans' as an empty string to store the final result
+
+        while (i >= 0) {
+            // Skip trailing spaces
+            while (i >= 0 && s.charAt(i) == ' ') i--;
+
+            // If 'i' becomes negative, break out of the loop (no more words left)
+            if (i < 0) break;
+
+            // Mark the end of the word
+            int j = i;
+
+            // Move 'i' backwards to find the start of the word
+            while (i >= 0 && s.charAt(i) != ' ') i--;
+
+            // Extract the word and add it to 'ans'
+            if (ans.isEmpty()) {
+                ans = ans.concat(s.substring(i + 1, j + 1));
+            } else {
+                ans = ans.concat(' ' + s.substring(i + 1, j + 1));
+            }
+        }
+
+        return ans;  // Return the final reversed string
+    }
+}
